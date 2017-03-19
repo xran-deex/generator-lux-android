@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion project.sdk
+    buildToolsVersion project.buildTools
+
+    defaultConfig {
+        applicationId "<%= packageName %>"
+        minSdkVersion project.minSdk
+        targetSdkVersion project.sdk
+        versionCode project.appVersion
+        versionName project.appVersionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+dependencies {
+    // compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    testCompile 'junit:junit:4.12'
+    compile "com.android.support:appcompat-v7:$project.supportVersion"
+    compile "com.android.support:design:$project.supportVersion"
+    compile "com.android.support:cardview-v7:$project.supportVersion"
+    compile "com.android.support:recyclerview-v7:$project.supportVersion"
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        flatDir {
+          dirs "libs"
+        }
+    }
+    dependencies {
+        classpath 'com.github.luxlang:luxc-jvm:0.5.0'
+        classpath 'com.github.luxlang:stdlib:0.5.0'
+        classpath 'com.github.luxlang:LuxGradlePlugin:0.2-SNAPSHOT'
+        classpath 'com.github.luxlang:LuxAndroidPlugin:0.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'com.github.luxlang.lux'
+apply plugin: 'com.github.luxlang.android'
+
+lux {
+  program = '<%= packageDir %>/app'
+  sourcePath = 'src/main/lux'
+  build = 'debug'
+}

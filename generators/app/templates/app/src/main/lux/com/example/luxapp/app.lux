@@ -1,0 +1,38 @@
+(;module:
+   lux
+   (lux (codata io)
+        [host #+ jvm-import class:])
+   )
+
+(jvm-import android.os.Bundle)
+(jvm-import android.support.v7.app.AppCompatActivity
+  (findViewById [int] android.view.View)
+  (setContentView [int] void))
+(jvm-import android.widget.TextView
+  (setText [CharSequence] void))
+
+## the app resource ids
+(jvm-import <%= packageName %>.app.R$layout
+  (#static activity_main int))
+(jvm-import <%= packageName %>.app.R$id
+  (#static activity_main int)
+  (#static textView int))
+
+
+## (class: MainActivity AppCompatActivity []
+(class: MainActivity AppCompatActivity []
+  (#public [] (new) []
+           [])
+  (AppCompatActivity [] (onCreate [bundle Bundle]) void
+    (exec
+      (.super! [bundle])
+
+      (AppCompatActivity.setContentView R$layout.activity_main _jvm_this)
+
+      (let [view (AppCompatActivity.findViewById R$id.textView _jvm_this)]
+        (exec
+          (TextView.setText "Hello, Lux!" (:! TextView view))
+          ))
+      )
+   )
+  )
