@@ -37,15 +37,13 @@ dependencies {
 buildscript {
     repositories {
         jcenter()
-        flatDir {
-          dirs "libs"
-        }
+        mavenLocal()
     }
     dependencies {
         classpath 'com.github.luxlang:luxc-jvm:0.5.0'
         classpath 'com.github.luxlang:stdlib:0.5.0'
-        classpath 'com.github.luxlang:LuxGradlePlugin:0.2-SNAPSHOT'
-        classpath 'com.github.luxlang:LuxAndroidPlugin:0.2-SNAPSHOT'
+        classpath 'com.github.luxlang:LuxGradlePlugin:0.3-SNAPSHOT'
+        classpath 'com.github.luxlang:LuxAndroidPlugin:0.3-SNAPSHOT'
     }
 }
 

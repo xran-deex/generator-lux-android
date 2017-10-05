@@ -96,8 +96,6 @@ module.exports = class extends Generator {
     this.fs.copy(this.sourceRoot() + '/gradlew.bat', 'gradlew.bat');
     this.fs.copy(this.sourceRoot() + '/settings.gradle', 'settings.gradle');
     this.fs.copy(this.sourceRoot() + '/app/proguard-rules.pro', 'app/proguard-rules.pro');
-    this.fs.copy(this.sourceRoot() + '/app/libs/LuxGradlePlugin-0.2-SNAPSHOT.jar', 'app/libs/LuxGradlePlugin-0.2-SNAPSHOT.jar');
-    this.fs.copy(this.sourceRoot() + '/app/libs/LuxAndroidPlugin-0.2-SNAPSHOT.jar', 'app/libs/LuxAndroidPlugin-0.2-SNAPSHOT.jar');
 
     this.fs.copyTpl(this.sourceRoot() + '/build.gradle', 'build.gradle', this.props);
     this.fs.copyTpl(this.sourceRoot() + '/app/build.gradle', 'app/build.gradle', this.props);
